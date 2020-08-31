@@ -1,0 +1,354 @@
+body {
+	//background: #fafafa;
+	background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+	-moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+	color: #444;
+	font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
+	text-shadow: 0 1px 0 #fff;
+}
+
+strong {
+	font-weight: bold; 
+}
+
+em {
+	font-style: italic; 
+}
+
+.main {
+	margin:0 auto; /* Центрируем блоки */
+	width:100%; /* Задаем ширину 100%, чтобы сделать ее резиновой */
+	max-width:100%; /* Устанавливаем максимальную ширину */
+}
+
+.inline div{
+	display:inline-block; /* Делаем блоки по горизонтали */
+	display: -moz-inline-stack; /* Для FireFox 2, тот же самый, что и inline-block */
+	vertical-align:top; /* Выравниваем их сверху */
+	font-size:16px; /* Ставим дочкам размер шрифта, иначе примет значение родителя */
+	/* Для IE 6 и IE 7 чтобы блоки были по горизонтали*/
+	zoom: 1;
+	*display: inline;
+}
+
+div.inline{
+	font-size:0;
+	display: inline-block;
+	float: left;
+} /* Ставим родителю значение 0, чтобы убрать отступы у блоков*/
+
+div.today-td-div, div.yesterday-td-div {
+	height: 70px;
+	overflow-y:auto;
+	font-size: 12px;
+	width: 100%;
+	white-space: pre-wrap;
+}
+
+.left-block {
+	text-align:center;
+	width:50%; /*Задаем ширину в процентах чтобы сделать ее резиновой*/
+}
+
+.left-block-button {
+	text-align:center;
+	width:50%; /*Задаем ширину в процентах чтобы сделать ее резиновой*/
+}
+
+.right-block {
+	text-align:center;
+	width:50%;
+}
+
+.right-block-button {
+	text-align:center;
+	width:50%; /*Задаем ширину в процентах чтобы сделать ее резиновой*/
+}
+
+p, form {
+	color: rgba(0,0,0,0.6);
+	text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+					 0px -5px 35px rgba(255,255,255,0.3);
+	padding-bottom: 0px;
+	font-size: large;
+	text-align: center;
+}
+
+.button {
+	border: none;
+	border-radius: 12px;
+	//display: block;
+	text-align: center;
+	cursor: pointer;
+	text-transform: uppercase;
+	outline: none;
+	overflow: hidden;
+	position: relative;
+	color: #eeeeee;
+	font-weight: 600;
+	font-size: 15px;
+	background-color: #153f00;
+	padding: 15px 15px;
+	margin: 0 0;
+	margin-bottom: 12px;
+}
+
+.button span {
+	position: relative;
+	z-index: 1;
+}
+
+.button:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 470%;
+	width: 140%;
+	background: #52b71f;
+	-webkit-transition: all .5s ease-in-out;
+	transition: all .5s ease-in-out;
+	-webkit-transform: translateX(-100%) translateY(-25%) rotate(45deg);
+	transform: translateX(-100%) translateY(-25%) rotate(45deg);
+}
+.button:hover:after {
+	-webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+	transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+table {
+	background: #f5f5f5;
+	border-collapse: separate;
+	box-shadow: inset 0 1px 0 #fff;
+	font-size: 12px;
+	line-height: 24px;
+	text-align: left;
+	width: 95%;
+	table-layout: fixed;
+}
+
+th {
+	background: linear-gradient(#777, #444);
+	border-left: 1px solid #555;
+	border-right: 1px solid #777;
+	border-top: 1px solid #555;
+	border-bottom: 1px solid #333;
+	box-shadow: inset 0 1px 0 #999;
+	color: #fff;
+	font-weight: bold;
+	padding: 10px 15px;
+	position: relative;
+	text-shadow: 0 1px 0 #000;
+	text-align: center;	
+}
+
+th:after {
+	background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
+	content: '';
+	display: block;
+	height: 25%;
+	left: 0;
+	margin: 1px 0 0 0;
+	position: absolute;
+	top: 25%;
+	width: 100%;
+}
+
+th:first-child {
+	border-left: 1px solid #777;	
+	box-shadow: inset 1px 1px 0 #999;
+	width: 10%;
+}
+
+th:last-child {
+	box-shadow: inset -1px 1px 0 #999;
+	width: 60%;
+}
+
+td {
+	border-right: 1px solid #fff;
+	border-left: 1px solid #e8e8e8;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #e8e8e8;
+	padding: 10px 15px;
+	position: relative;
+	transition: all 300ms;
+	text-align: center;
+	cursor: pointer;
+}
+
+td:first-child {
+	box-shadow: inset 1px 0 0 #fff;
+}	
+
+td:last-child {
+	border-right: 1px solid #e8e8e8;
+	box-shadow: inset -1px 0 0 #fff;
+}
+
+td.today-td-URL, td.yesterday-td-URL {
+	overflow: auto; 
+	white-space: nowrap;
+	font-size: 16px;
+	padding: 10px 10px;
+}
+
+td.check { 
+	padding: 2px 2px;
+	cursor: default;
+}	
+
+tr {	
+}
+
+tr:nth-child(odd) td {
+	background: #f1f1f1;	
+}
+
+tr:last-of-type td {
+	box-shadow: inset 0 -1px 0 #fff; 
+}
+
+tr:last-of-type td:first-child {
+	box-shadow: inset 1px -1px 0 #fff;
+}	
+
+tr:last-of-type td:last-child {
+	box-shadow: inset -1px -1px 0 #fff;
+}	
+
+tbody:hover td {
+	color: transparent;
+	text-shadow: 0 0 3px #aaa;
+}
+
+tbody:hover tr:hover td {
+	color: #444;
+	text-shadow: 0 1px 0 #fff;
+}
+
+#yesterday-delete-button {
+	background-color: #b30000;
+}
+#yesterday-delete-button:after {
+	background: #ff0000;
+}
+
+#today-delete-button {
+	background-color: #b30000;
+}
+#today-delete-button:after {
+	background: #ff0000;
+}
+
+#href2 {
+	background-color: #ff9900;
+}
+#href2:after {
+	background: #ffff00;
+}
+
+#prompt-form {
+  display: inline-block;
+  padding: 5px 5px 5px 5px;
+  width: 80%;
+  border: 1px solid black;
+  background: white no-repeat left 5px;
+  vertical-align: middle;
+  border-radius: 12px;
+}
+
+#prompt-form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #444;
+	font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
+	text-shadow: 0 1px 0 #fff;
+}
+
+#prompt-message {
+	margin-bottom: 20px;
+}
+
+#prompt-form-container:before {
+  display: inline-block;
+  height: 100%;
+  content: '';
+  vertical-align: middle;
+}
+
+#cover-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  //z-index: 9000;
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  opacity: 0.3;
+}
+
+#prompt-form input[name="textURL"] {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#prompt-form textarea {
+  display: block;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  overflow:auto;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 50px;
+  text-decoration: none;
+  margin: 10px 20px;
+  cursor: pointer;
+}
+
+input[type=button] {
+	background-color: red;
+	  border: none;
+	  color: white;
+	  padding: 10px 50px;
+	  text-decoration: none;
+	  margin: 10px 20px;
+	  cursor: pointer;
+	  border-radius: 3px;
+}
+
+input[type="checkbox"]{
+  /*display: block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;*/
+  
+  float: left;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#text-url, #text-html {
+    width: 100%;
+    padding: 10px;
+    margin: 0px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}

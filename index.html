@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href=".\css\basic_styles.css">
+	<meta charset="utf-8">
+</head>
+	
+<body>
+	
+	<script src=".\javascript\murmurhash2.js"></script>
+	<script src=".\javascript\hashTable.js"></script>
+	<script src=".\javascript\script.js"></script>
+	<script src=".\javascript\rowsProcessing.js"></script>
+	<script src=".\javascript\pop-up.js"></script>
+	
+	<div class="main inline" style="margin-bottom:100px;">
+		<p><big>Главная страница</big></p>
+		<p>Для обработки таблиц нажмите соответствующие кнопки</p>
+		<p>Кнопка для построения отчета</p>
+		<div class="left-block-button" style="width:35%;">
+		</div>
+		<div class="left-block-button" style="width:30%;">
+			<a href="#rep">
+				<button type="button" class="button" id="href2" onclick="getReport()">
+					<span>Построить отчет</span>
+				</button>
+			</a>
+		</div>
+		
+		
+		<div class="left-block">
+			<div class="main inline">
+				<p><big>Таблица сегодняшнего дня</big></p>
+
+				<div class="left-block-button">
+					<button type="button" class="button" id="today-add-button">
+						<span>Добавить строку</span>
+					</button>
+				</div>
+				
+				<div class="right-block-button">
+					<button type="button" class="button" id="today-delete-button" onclick="deleteRow('today')">
+						<span>Удалить строки</span>
+					</button>
+				</div>
+			</div>
+			
+			<table width="40%" align="center" id="today">
+				<thead>
+					<tr>
+						<th></th>
+						<th>URL address</th>
+						<th>HTML description</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="right-block">
+			<div class="main inline">
+				<p><big>Таблица вчерашнего дня</big></p>
+
+				<div class="left-block-button">
+					<button type="button" class="button" id="yesterday-add-button">
+						<span>Добавить строку</span>
+					</button>
+				</div>
+				
+				<div class="right-block-button">
+					<button type="button" class="button" id="yesterday-delete-button" onclick="deleteRow('yesterday')">
+						<span>Удалить строки</span>
+					</button>
+				</div>
+			</div>
+			<table width="40%" align="center" id="yesterday">
+				<thead>
+					<tr>
+						<th></th>
+						<th>URL address</th>
+						<th>HTML description</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div class="main inline" style="background-color: lightblue;">
+		<a name="rep"></a>
+		<p id="report">
+			Здравствуйте, дорогая и.о. секретаря<br>
+			За последние сутки во вверенных Вам сайтах произошли следующие изменения:<br><br>
+			
+			Исчезли следующие страницы:<br><br>
+			
+			Появились следующие новые страницы:<br><br>
+			
+			Изменились следующие страницы:<br><br>
+			
+			С уважением,<br>
+			автоматизированная система<br>
+			мониторинга.<br>
+		</p>
+	</div>
+	
+	<div id="prompt-form-container">
+		<form id="prompt-form">
+		  <div id="prompt-message"></div>
+			<table align="center" id="yesterday">
+			  <thead>
+				<tr>
+				  <th width="40%">URL address</th>
+				  <th width="60%">HTML description</th>
+				</tr>
+				
+			  </thead>
+			  <tbody>
+				<tr>
+					<td height="400px;"><textarea rows="2" cols="255" id="text-url" style="white-space: nowrap; overflow-y: hidden;"></textarea></td>
+					<td height="400px;"><textarea id="text-html" style="white-space: nowrap; font-size:10px;"></textarea></td>
+				</tr>
+			  </tbody>
+			</table>
+		  <div class="main inline">
+			  <div class="left-block-button">
+				<input type="submit" value="Ok">
+			  </div>
+			  <div class="right-block-button">
+				<input type="button" name="cancel" value="Отмена">
+			  </div>
+		  </div>
+		</form>
+	</div>
+	
+	<script>
+		/*for(var i = 0, len = 10; i < len; i++) {
+			addString('today-add-button', i.toString(), i.toString());
+			//ht.put(r.toString(), '6');
+		}
+		for(var i = 0, len = 20; i < len; i++) {
+			addString('yesterday-add-button', i.toString(), i.toString());
+			//ht.put(r.toString(), '6');
+		}*/
+		document.getElementById('today-add-button').onclick = function() {
+				  showPrompt('Добавление в таблицу сегодняшнего дня', '', '', function() {
+					addString('today-add-button', undefined, undefined);
+					
+					var elements = document.getElementsByClassName('today-td-URL');
+					for(var i = 0, len = elements.length; i < len; i++) {
+						elements[i].onclick = function (event) {
+							var coverDiv = document.getElementById('cover-div');
+							if (coverDiv == null){
+								var parentDiv = this.parentNode;
+								var td = parentDiv.getElementsByTagName('td')[1];
+								var valueURL = td.firstChild.nodeValue;
+								
+								var td1 = parentDiv.getElementsByTagName('td')[2];
+								var div = td1.getElementsByTagName('div')[0];
+								var valueHTML = div.firstChild.nodeValue;
+								
+								showPrompt('Изменение строки таблицы сегодняшнего дня', valueURL, valueHTML, function() {
+									changeString(valueURL, 'today-add-button');
+								});
+							}
+						}
+					}
+				});	
+		};
+		
+		
+		document.getElementById('yesterday-add-button').onclick = function() {
+				  showPrompt('Добавление в таблицу сегодняшнего дня', '', '', function() {
+					addString('yesterday-add-button', undefined, undefined);
+					
+					var elements = document.getElementsByClassName('yesterday-td-URL');
+					for(var i = 0, len = elements.length; i < len; i++) {
+						elements[i].onclick = function (event) {
+							var coverDiv = document.getElementById('cover-div');
+							if (coverDiv == null){
+								var parentDiv = this.parentNode;
+								var td = parentDiv.getElementsByTagName('td')[1];
+								var valueURL = td.firstChild.nodeValue;
+								
+								var td1 = parentDiv.getElementsByTagName('td')[2];
+								var div = td1.getElementsByTagName('div')[0];
+								var valueHTML = div.firstChild.nodeValue;
+								
+								showPrompt('Изменение строки таблицы сегодняшнего дня', valueURL, valueHTML, function() {
+									changeString(valueURL, 'yesterday-add-button');
+								});
+							}
+						}
+					}
+				});
+		};
+		
+		
+	</script>
+</body>
+</html>
